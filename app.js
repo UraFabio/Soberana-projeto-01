@@ -2,11 +2,14 @@ const express = require('express');
 const morgan = require('morgan');
 
 const agendaRouter = require('./routes/agendaRoutes');
-// const userRouter = require('./routes/userRoutes');
+const authRouter = require('./routes/authRoutes');
+
+const authController = require('./controllers/authController');
 
 const app = express();
 
 // 1) Middlewares
+app.use(authController.protect);
 app.use(morgan('dev'));
 
 app.use(express.json());
@@ -20,7 +23,7 @@ app.use((req, res, next) => {
 // 2) Route handlers
 
 app.use('/api/v1/agendas', agendaRouter);
-// app.use('/api/v1/users', userRouter);
+app.use('/api/v1', authRouter);
 
 // app.get('/api/v1/tours', getAllTours);
 // app.get('/api/v1/tours/:id', getTour);

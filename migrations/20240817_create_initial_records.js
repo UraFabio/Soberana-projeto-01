@@ -14,17 +14,15 @@ async function runMigration() {
 
   try {
     await client.query(`
+      DROP SCHEMA public CASCADE;
+      CREATE SCHEMA public;
+    `);
+
+    await client.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         name VARCHAR(100),
         email VARCHAR(100) UNIQUE NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      );
-    `);
-
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS passwords (
-        user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
         password TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
@@ -45,36 +43,25 @@ async function runMigration() {
     await client.query(`
       CREATE TABLE IF NOT EXISTS archives (
         path TEXT PRIMARY KEY NOT NULL,
-        agenda_id INTEGER REFERENCES agenda(id) ON DELETE CASCADE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
 
-    const userResult = await client.query(`
-      INSERT INTO users (name, email)
-      VALUES ('admin', 'admin@admin.com')
-      RETURNING id;
-    `);
-
-    const userId = userResult.rows[0].id;
     const hashedPassword = await bcrypt.hash('admin123', 10);
 
     await client.query(`
-      INSERT INTO passwords (user_id, password)
-      VALUES (${userId}, '${hashedPassword}');
+      INSERT INTO users (name, email, password)
+      VALUES ('admin', 'admin@admin.com', '${hashedPassword}')
     `);
-
-    const agendaResult = await client.query(`
-      INSERT INTO agenda (title, description, year, month, day)
-      VALUES ('Evento Exemplo', 'Descrição do evento exemplo', 2024, 8, 17)
-      RETURNING id;
-    `);
-
-    const agendaId = agendaResult.rows[0].id;
 
     await client.query(`
-      INSERT INTO archives (path, agenda_id)
-      VALUES ('storage/images/exemplo.jpg', ${agendaId});
+      INSERT INTO agenda (title, description, year, month, day)
+      VALUES ('Evento Exemplo', 'Descrição do evento exemplo', 2024, 8, 17);
+    `);
+
+    await client.query(`
+      INSERT INTO archives (path)
+      VALUES ('storage/images/exemplo.jpg');
     `);
 
     console.log('Tabelas e dados iniciais criados com sucesso!');

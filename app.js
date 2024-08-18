@@ -3,13 +3,13 @@ const morgan = require('morgan');
 
 const agendaRouter = require('./routes/agendaRoutes');
 const authRouter = require('./routes/authRoutes');
+const uploadRouter = require('./routes/uploadRoutes');
 
 const authController = require('./controllers/authController');
 
 const app = express();
 
 // 1) Middlewares
-app.use(authController.protect);
 app.use(morgan('dev'));
 
 app.use(express.json());
@@ -22,8 +22,9 @@ app.use((req, res, next) => {
 
 // 2) Route handlers
 
-app.use('/api/v1/agendas', agendaRouter);
-app.use('/api/v1', authRouter);
+app.use('/api/v1/agendas', authController.protect, agendaRouter);
+app.use('/api/v1/login', authRouter);
+app.use('/api/v1/upload', authController.protect, uploadRouter);
 
 // app.get('/api/v1/tours', getAllTours);
 // app.get('/api/v1/tours/:id', getTour);

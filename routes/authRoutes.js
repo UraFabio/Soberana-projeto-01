@@ -3,7 +3,5 @@ const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
-router.post('/login', authController.loginUser);
-// Outras rotas, como registro ou logout, podem ser adicionadas aqui
-
+router.post('/', authController.loginUser);
 module.exports = router;

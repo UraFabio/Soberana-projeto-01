@@ -1,4 +1,4 @@
-const pool = require('../database');
+const pool = require('./../database');
 
 exports.checkBody = (req, res, next) => {
   if (!req.body.title) {

@@ -51,9 +51,24 @@ saveButton2.addEventListener('click', async (event) => {
     day: document.getElementById('editDay').value,
   };
 
-  console.log('Dados atualizados:', updatedAgenda);
+  console.log(updatedAgenda);
 
   try {
+    if (
+      !updatedAgenda.title ||
+      updatedAgenda.year * 1 < 1 ||
+      updatedAgenda.year * 1 > 9999 ||
+      updatedAgenda.month * 1 < 0 ||
+      updatedAgenda.month * 1 > 12 ||
+      updatedAgenda.day * 1 < 1 ||
+      updatedAgenda.day * 1 > 31
+    ) {
+      console.log('alo');
+      throw new Error('data invalida');
+    }
+
+    console.log('Dados atualizados:', updatedAgenda);
+
     const response = await fetch(`/api/v1/agendas/${agendaId2}`, {
       method: 'PATCH',
       headers: {
@@ -70,11 +85,10 @@ saveButton2.addEventListener('click', async (event) => {
     if (!response.ok) {
       throw new Error('Erro ao atualizar agenda');
     }
+    window.location.href = '/dashboard';
   } catch (err) {
     console.log('erro: ' + err.message);
   }
-
-  window.location.href = '/dashboard';
 
   closeEditModal();
 });

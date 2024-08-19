@@ -8,6 +8,11 @@ let totalAgendas = 0;
 let totalPages = 0;
 let agendas = [];
 
+const state = {
+  orderBy: 'created_at',
+  order: 'asc',
+};
+
 const fetchData = async () => {
   document.getElementById('loader').style.display = 'block';
   try {
@@ -101,3 +106,37 @@ document.getElementById('pagination').addEventListener('click', function (e) {
     }
   }
 });
+
+function sortList(property, order) {
+  agendas = [...agendas].sort((a, b) => {
+    if (property === 'created_at') {
+      const dateA = new Date(a[property]);
+      const dateB = new Date(b[property]);
+      return order === 'asc' ? dateA - dateB : dateB - dateA;
+    } else {
+      return order === 'asc'
+        ? a[property] - b[property]
+        : b[property] - a[property];
+    }
+  });
+  loadAgendas();
+}
+
+function toggleSort(property) {
+  state.orderBy = property;
+  state.order = state.order === 'asc' ? 'desc' : 'asc';
+  sortList(state.orderBy, state.order);
+}
+
+document
+  .getElementById('toggle-created-at')
+  .addEventListener('click', () => toggleSort('created_at'));
+document
+  .getElementById('toggle-year')
+  .addEventListener('click', () => toggleSort('year'));
+document
+  .getElementById('toggle-month')
+  .addEventListener('click', () => toggleSort('month'));
+document
+  .getElementById('toggle-day')
+  .addEventListener('click', () => toggleSort('day'));

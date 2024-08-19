@@ -65,6 +65,43 @@ body {
   color: #1e1f20;
 }
 
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.button-group button {
+  background-color: #739ad4;
+  /* Cor do texto */
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button-group button:hover {
+  background-color: #5a7db3;
+  /* Cor de fundo ao passar o cursor */
+  transform: scale(1.05);
+  /* Efeito de aumento ao passar o cursor */
+}
+
+.button-group button:focus {
+  outline: none;
+  /* Remove o contorno padrão ao focar no botão */
+  box-shadow: 0 0 0 3px rgba(115, 172, 224, 0.5);
+  /* Sombra de foco */
+}
+
+.button-group button:active {
+  background-color: #4b6d98;
+  /* Cor de fundo ao pressionar o botão */
+}
+
+
 .main-content {
   padding: 2rem;
   margin-left: 15rem;
@@ -106,6 +143,27 @@ body {
 
 .add-agenda:hover {
   transform: scale(1.2);
+}
+
+.button-group {
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  margin-right: 10px;
+}
+
+.item-list {
+  margin-top: 20px;
+}
+
+.agenda-menu {
+  display: flex;
+  align-items: center;
+}
+
+.item-list div {
+  margin-bottom: 10px;
 }
 
 .modal {

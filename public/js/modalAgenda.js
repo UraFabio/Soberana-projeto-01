@@ -23,7 +23,18 @@ saveButton.addEventListener('click', async function () {
   const month = document.getElementById('noteMonth').value;
   const day = document.getElementById('noteDay').value;
 
-  if (title && year && month && day) {
+  if (
+    title &&
+    year &&
+    month &&
+    day &&
+    year > 0 &&
+    year < 10000 &&
+    month > 0 &&
+    month < 13 &&
+    day > 0 &&
+    day < 32
+  ) {
     try {
       const response = await fetch('/api/v1/agendas', {
         method: 'POST',
@@ -47,6 +58,6 @@ saveButton.addEventListener('click', async function () {
 
     modal.style.display = 'none';
   } else {
-    alert('Por favor, preencha todos os campos.');
+    alert('Por favor, verifique os campos.');
   }
 });

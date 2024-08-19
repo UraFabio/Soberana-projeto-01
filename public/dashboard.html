@@ -132,6 +132,16 @@
         <button id="toggle-month">Mês</button>
         <button id="toggle-day">Dia</button>
       </div>
+
+      <form id="uploadForm" enctype="multipart/form-data">
+        <label for="fileInput">Selecione um arquivo:</label>
+        <input type="file" id="fileInput" name="file" required>
+
+        <div class="modal-buttons">
+          <button type="submit" class="upload-button">Enviar</button>
+          <button type="button" class="cancel-button">Cancelar</button>
+        </div>
+      </form>
     </div>
 
     <div id="user-modal" class="modal">
@@ -248,6 +258,7 @@
   <script src="./js/deleteAgenda.js" defer></script>
   <script src="./js/editAgenda.js" defer></script>
   <script src="./js/userModal.js" defer></script>
+  <script src="./js/upload.js" defer></script>
 </body>
 
 </html>

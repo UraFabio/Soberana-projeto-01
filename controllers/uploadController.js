@@ -2,7 +2,6 @@ const multer = require('multer');
 const path = require('path');
 const pool = require('./../database');
 
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'storage/');
@@ -41,6 +40,24 @@ exports.uploadFile = async (req, res) => {
     res
       .status(500)
       .json({ status: 'error', message: 'Erro ao carregar o arquivo.' });
+  }
+};
+
+exports.getFiles = async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT * FROM archives
+    `);
+
+    res.status(200).json({
+      status: 'success',
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      message: 'falha ao buscar arquivos',
+    });
   }
 };
 

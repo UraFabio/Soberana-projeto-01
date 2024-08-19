@@ -61,7 +61,7 @@ async function runMigration() {
 
     await client.query(`
       INSERT INTO archives (path)
-      VALUES ('storage/exemplo.jpg');
+      VALUES ('storage/example.jpg');
     `);
 
     console.log('Tabelas e dados iniciais criados com sucesso!');

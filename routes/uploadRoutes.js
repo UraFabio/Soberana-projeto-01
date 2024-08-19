@@ -9,4 +9,6 @@ router.post(
   uploadController.uploadFile
 );
 
+router.get('/', uploadController.getFiles);
+
 module.exports = router;

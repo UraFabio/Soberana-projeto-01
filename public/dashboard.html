@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="./css/dashboard.css">
+
+</head>
+
+<body>
+  <script>
+    fetch('/auth/authenticate', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    }).then((response) => {
+      console.log(response)
+      if (response.ok) {
+      } else {
+        window.location.href = '/login'
+      }
+    });
+  </script>
+
+
+
+  <div class="side-menu">
+    <h2>MENU</h2>
+    <div class="divider"></div>
+    <ul>
+
+      <li>
+        <span id="agendas">Agendas</span>
+      </li>
+
+      <li>
+        <span>Arquivos</span>
+      </li>
+
+      <li title="logout">
+        <svg id="logout" width="3rem" height="3rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 12L2 12M2 12L5.5 9M2 12L5.5 15" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path
+            d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.3531 21.8897 19.1752 21.9862 17 21.9983M9.00195 17C9.01406 19.175 9.11051 20.3529 9.87889 21.1213C10.5202 21.7626 11.4467 21.9359 13 21.9827"
+            stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </li>
+    </ul>
+  </div>
+
+  <span id="loader" class="loader"></span>
+
+  <div id="main-content" class="main-content">
+    <div class="teste">
+      <div class="menu-toggle">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <h1 id="page-title">${title}</h1>
+    </div>
+    <div id="pagination" class="pagination">
+      <div id="previous-page" class="previous-page" title="anterior">
+        <svg width="64px" height="64px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"
+          transform="matrix(1, 0, 0, 1, 0, 0)">
+          <g id="SVGRepo_bgCarrier" stroke-width="0">
+            <path transform="translate(-2.4, -2.4), scale(0.8999999999999999)"
+              d="M16,27.47706745990685C18.812880124457664,27.449929680988156,21.516833208740156,26.89635836181839,23.929606478407223,25.45013700850013C26.786848597673494,23.737500095437262,30.157530192676816,21.87840069528641,30.795200818031734,18.60879308921895C31.435491803026878,15.325749788500262,28.673809331257193,12.545099327471892,27.012698879841174,9.64181533721941C25.342366036311976,6.722412476995816,24.32451081614923,2.9624717057201604,21.172145920106306,1.789645874383579C18.013713138667924,0.6145625084759465,14.615594989298662,2.405772535418855,11.598517207661537,3.9070254159319937C8.92645317581268,5.236604603165263,6.974656595903755,7.369328222099037,5.174445198238111,9.74986302107572C3.0582594046104905,12.54823099572749,-0.2337656879642681,15.299899780758093,0.36932111708311943,18.75611041384829C0.9724858712433933,22.212767762984253,4.876745341617271,23.89474744633565,7.940959537749205,25.60439042374948C10.424254588593527,26.989916262602982,13.15646635997237,27.504500974261042,16,27.47706745990685"
+              fill="#739ad4" strokewidth="0"></path>
+          </g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M20 11.25C20.4142 11.25 20.75 11.5858 20.75 12C20.75 12.4142 20.4142 12.75 20 12.75H10.75L10.75 18C10.75 18.3034 10.5673 18.5768 10.287 18.6929C10.0068 18.809 9.68417 18.7449 9.46967 18.5304L3.46967 12.5304C3.32902 12.3897 3.25 12.1989 3.25 12C3.25 11.8011 3.32902 11.6103 3.46967 11.4697L9.46967 5.46969C9.68417 5.25519 10.0068 5.19103 10.287 5.30711C10.5673 5.4232 10.75 5.69668 10.75 6.00002L10.75 11.25H20Z"
+              fill="#000000"></path>
+          </g>
+        </svg>
+      </div>
+      <span><span id="current-page">1</span> - ${last page}</span>
+      <div class="next-page" title="próxima">
+        <svg id="next-page" width="64px" height="64px" viewBox="-2.4 -2.4 28.80 28.80" fill="none"
+          xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)">
+          <g id="SVGRepo_bgCarrier" stroke-width="0">
+            <path transform="translate(-2.4, -2.4), scale(0.8999999999999999)"
+              d="M16,29.859483038385708C18.541439895920693,29.5982056853321,20.948817637421637,28.19815054333793,22.57061926853165,26.22408315109293C24.010227677138147,24.4717825228794,23.124006457335867,21.732455390756204,24.279799511459462,19.78125773859287C25.664163232736218,17.44418949522683,29.25903929737774,16.676936424623577,29.802369351856385,14.015518881501585C30.35014536709659,11.332323492907358,29.042822025566675,8.291569379963061,26.99710655637557,6.470952925198912C24.994409555730165,4.688621428862544,21.999036831740174,4.8236751576613885,19.321524313447334,4.687927032032032C17.140662811888856,4.57735878666579,15.16238509065176,5.506915490026152,12.993553042359677,5.76098196196693C10.249170177507464,6.082470973841685,7.134373456798621,4.75852330296082,4.895457950993482,6.377859540903998C2.6300673184013874,8.016344394370671,1.1912886999788022,11.18928894640809,1.6830211981930905,13.941529212714004C2.1766880197801735,16.704595939939203,6.074401679610963,17.44882721561511,7.322632327780084,19.962821033985826C8.502366565156752,22.33885993708076,6.750808259539577,25.67601216860014,8.499717200148734,27.67066784247386C10.252199948991612,29.669399495779796,13.355719091258745,30.13133314889789,16,29.859483038385708"
+              fill="#739ad4" strokewidth="0"></path>
+          </g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M20 11.25C20.4142 11.25 20.75 11.5858 20.75 12C20.75 12.4142 20.4142 12.75 20 12.75H10.75L10.75 18C10.75 18.3034 10.5673 18.5768 10.287 18.6929C10.0068 18.809 9.68417 18.7449 9.46967 18.5304L3.46967 12.5304C3.32902 12.3897 3.25 12.1989 3.25 12C3.25 11.8011 3.32902 11.6103 3.46967 11.4697L9.46967 5.46969C9.68417 5.25519 10.0068 5.19103 10.287 5.30711C10.5673 5.4232 10.75 5.69668 10.75 6.00002L10.75 11.25H20Z"
+              fill="#000000"></path>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div id="add-agenda" class="add-agenda" title="criar agenda">
+      <svg width="5rem" height="5rem" viewBox="-6.24 -6.24 36.48 36.48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)">
+          <path transform="translate(-6.24, -6.24), scale(1.14)"
+            d="M16,27.887758092333872C18.912302350794043,28.168642113072377,22.0545734587621,27.766733181768146,24.265346057985433,25.850255858638533C26.457894077467376,23.949577082048812,26.742615994006485,20.836634057283234,27.395383679678172,18.00931359825217C28.096085378417317,14.974377445607779,29.2686630349905,11.890104310334488,28.160531019233083,8.97911414255699C26.93081865409085,5.7487403664895895,24.56651327517654,2.490414522871794,21.196031313122536,1.7240212964166908C17.921865997323803,0.9795289215655888,15.2404752666578,4.099300327621459,12.116813030150759,5.3310314848187925C9.129675383546672,6.5089278870475145,5.274818132862424,6.116311639106106,3.4164820013712855,8.734902496139203C1.5094503360372236,11.42211047659717,1.8039986006191715,15.203610419033161,2.9069809561828706,18.3086525163547C3.893914810747494,21.087002641573903,6.592728210417121,22.634337751533725,8.972304313881004,24.37528158159114C11.151609014518197,25.969702985834758,13.31218546533783,27.628525340181795,16,27.887758092333872"
+            fill="#739ad4" strokewidth="0"></path>
+        </g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+          stroke-width="0.096"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path d="M15 12L12 12M12 12L9 12M12 12L12 9M12 12L12 15" stroke="#000000" stroke-width="1.9919999999999998"
+            stroke-linecap="round"></path>
+          <path
+            d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.5093 4.43821 21.8356 5.80655 21.9449 8"
+            stroke="#000000" stroke-width="1.9919999999999998" stroke-linecap="round"></path>
+        </g>
+      </svg>
+    </div>
+
+
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Editar anotação</h2>
+        <form id="editForm">
+          <label for="editTitle">Título:</label>
+          <input type="text" id="editTitle" name="editTitle" required>
+
+          <label for="editContent">Conteúdo:</label>
+          <textarea id="editContent" name="editContent" rows="4" required></textarea>
+
+          <div class="modalForm">
+
+            <label for="editYear">Ano:</label>
+            <input type="number" id="editYear" name="editYear" required>
+
+            <label for="editMonth">Mês:</label>
+            <input type="number" id="editMonth" name="editMonth" required>
+
+            <label for="editDay">Dia:</label>
+            <input type="number" id="editDay" name="editDay" required>
+          </div>
+
+          <div class="modal-buttons">
+            <button type="button" id="saveedit" class="save-button">Salvar</button>
+            <button type="button" id="canceledit" class="cancel-button">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Nova Anotação</h2>
+        <form id="noteForm">
+          <label for="noteTitle">Título:</label>
+          <input type="text" id="noteTitle" name="noteTitle" required>
+
+          <label for="noteContent">Conteúdo:</label>
+          <textarea id="noteContent" name="noteContent" rows="4" required></textarea>
+
+          <div class="modalForm">
+
+            <label for="noteYear">Ano:</label>
+            <input type="number" id="noteYear" name="noteYear" required>
+
+            <label for="noteMonth">Mês:</label>
+            <input type="number" id="noteMonth" name="noteMonth" required>
+
+            <label for="noteDay">Dia:</label>
+            <input type="number" id="noteDay" name="noteDay" required>
+          </div>
+
+          <div class="modal-buttons">
+            <button type="button" id="saveNote" class="save-button">Salvar</button>
+            <button type="button" id="cancelNote" class="cancel-button">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <div id="content" class="content"></div>
+
+    <div id="confirmation-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Confirmação</h2>
+        <p>Você tem certeza de que deseja excluir este item?</p>
+        <div class="modal-buttons">
+          <button id="confirm-btn" class="confirm-button">Confirmar</button>
+          <button id="cancel-btn" class="cancel-button">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/modalAgenda.js"></script>
+  <script src="./js/agendas.js" defer></script>
+  <script src="./js/menuToggle.js" defer></script>
+  <script src="./js/deleteAgenda.js" defer></script>
+  <script src="./js/editAgenda.js" defer></script>
+</body>
+
+</html>

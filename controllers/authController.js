@@ -4,30 +4,47 @@ const bcrypt = require('bcrypt');
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
+  console.log(email);
+  console.log(password);
 
-  const user = await pool.query(
-    `
+  if (!email || !password) {
+    throw new Error();
+  }
+
+  try {
+    const user = await pool.query(
+      `
     SELECT * FROM users  
     WHERE email = $1
   `,
-    [email]
-  );
+      [email]
+    );
 
-  if (!user || !(await bcrypt.compare(password, user.rows[0].password))) {
-    return res.status(401).json({
-      status: 'fail',
-      message: 'Credenciais inválidas',
+    if (user.rowCount === 0) {
+      throw new Error('Email não cadastrado');
+    }
+
+    if (!user || !(await bcrypt.compare(password, user.rows[0].password))) {
+      return res.status(401).json({
+        status: 'fail',
+        message: 'Credenciais inválidas',
+      });
+    }
+
+    const token = jwt.sign({ id: user.rows[0].id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
+    });
+
+    res.status(200).json({
+      status: 'success',
+      token,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'failed',
+      message: err.message,
     });
   }
-
-  const token = jwt.sign({ id: user.rows[0].id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
-  });
-
-  res.status(200).json({
-    status: 'success',
-    token,
-  });
 };
 
 exports.protect = (req, res, next) => {
@@ -40,7 +57,7 @@ exports.protect = (req, res, next) => {
     token = req.headers.authorization.split(' ')[1];
   }
 
-  if (!token) {
+  if (!token || token == '') {
     return res.status(401).json({
       status: 'fail',
       message: 'Você não está logado! Por favor, faça login para obter acesso.',
@@ -55,10 +72,8 @@ exports.protect = (req, res, next) => {
       });
     }
 
-    // 3. Adicionar os dados do usuário ao request (opcional)
     req.user = decoded;
 
-    // 4. Continuar para a próxima middleware/rota
     next();
   });
 };

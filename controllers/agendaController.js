@@ -1,7 +1,7 @@
 const pool = require('./../database');
 
 exports.checkBody = (req, res, next) => {
-  if (!req.body.title) {
+  if (!req.body.title || !req.body.year || !req.body.month || !req.body.day) {
     return res.status(400).json({
       status: 'fail',
       message: 'missing title',
@@ -14,7 +14,7 @@ exports.getAllAgendas = async (req, res) => {
   try {
     const agendas = await pool.query(`
       SELECT * FROM agenda 
-      ORDER BY year DESC, month ASC, day ASC;
+      ORDER BY created_at DESC;
     `);
 
     res.status(200).json({
@@ -43,7 +43,9 @@ exports.getAgenda = async (req, res) => {
       [id]
     );
 
-    if (agenda.rows.length < 1) {
+    console.log(agenda);
+
+    if (agenda.rowCount === 0) {
       throw new Error();
     }
 
@@ -101,13 +103,16 @@ exports.updateAgenda = async (req, res) => {
     `,
       [id]
     );
+    if (result.rowCount === 0) {
+      throw new Error();
+    }
 
     const agenda = result.rows[0];
 
     const newAgenda = {};
 
     for (const key in agenda) {
-      if (!body.hasOwnProperty(key)) {
+      if (!body.hasOwnProperty(key) || body[key] === '') {
         newAgenda[key] = agenda[key];
       } else {
         newAgenda[key] = body[key];
@@ -153,7 +158,6 @@ exports.deleteAgenda = async (req, res) => {
     `,
       [id]
     );
-    console.log('oi');
     res.status(204).json({
       status: 'success',
     });

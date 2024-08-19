@@ -1,0 +1,102 @@
+.agenda {
+  display: flex;
+  flex-direction: row-reverse;
+  border: 1px solid #e0e0e0;
+  max-width: 50rem;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.previous-page,
+.next-page,
+.add-agenda {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.previous-page:hover,
+.next-page:hover,
+.add-agenda:hover {
+  transform: translateY(-5px);
+}
+
+.agenda:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para o header da agenda */
+.agenda-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.date {
+  font-size: 1rem;
+  color: #888;
+}
+
+/* Estilo para a descrição */
+.description {
+  margin: 10px 0;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Estilo para o footer da agenda */
+.agenda-footer {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* Botões de ação */
+.agenda-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.agenda-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.agenda-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Estilos adicionais para os ícones dos botões */
+.agenda-button svg {
+  fill: #333;
+  transition: fill 0.2s ease;
+}
+
+.agenda-button.delete:hover svg {
+  fill: #e74c3c;
+  /* Cor vermelha ao passar o mouse no botão de excluir */
+}
+
+.agenda-button.edit:hover svg {
+  fill: #3498db;
+  /* Cor azul ao passar o mouse no botão de editar */
+}

@@ -1,0 +1,407 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  color: #1c274c;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.teste {
+  display: flex;
+  gap: 1rem;
+}
+
+.side-menu {
+  position: fixed;
+  background-color: #739ad4;
+  width: 15rem;
+  height: 100vh;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+.side-menu h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.divider {
+  height: .1rem;
+  width: 100%;
+  background-color: #1c274c;
+  margin-bottom: 1rem;
+}
+
+.side-menu ul {
+  list-style-type: none;
+}
+
+.side-menu li {
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: .2rem;
+  transition: all .3s ease-in-out;
+}
+
+.side-menu li:hover {
+  transform: scale(1.2);
+  color: #1e1f20;
+}
+
+.main-content {
+  padding: 2rem;
+  margin-left: 15rem;
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+}
+
+#page-title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.pagination span {
+  font-size: 1.5rem;
+}
+
+.previous-page,
+.next-page {
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.previous-page:hover,
+.next-page:hover {
+  transform: scale(1.1);
+}
+
+.add-agenda {
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  width: min-content;
+}
+
+.add-agenda:hover {
+  transform: scale(1.2);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 101;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 1rem auto;
+  padding: 20px;
+  border: 1px solid #1c274c;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 8px;
+}
+
+.modalForm {
+  display: flex;
+  gap: 1rem;
+}
+
+.close,
+.close-modal {
+  color: #1c274c;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus,
+.close-modal:hover,
+.close-modal:focus {
+  color: #739ad4;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.save-button,
+.cancel-button,
+.confirm-button {
+  background-color: #739ad4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.save-button:hover,
+.cancel-button:hover,
+.confirm-button:hover {
+  background-color: #1c274c;
+}
+
+
+#noteForm {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#noteForm label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+#noteForm input,
+#noteForm textarea,
+#editForm input,
+#editForm textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+#noteForm input[type="number"]::-webkit-outer-spin-button,
+#noteForm input[type="number"]::-webkit-inner-spin-button,
+#editForm input[type="number"]::-webkit-outer-spin-button,
+#editForm input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#noteForm textarea,
+#editForm textarea {
+  resize: vertical;
+  /* Allow resizing vertically only */
+}
+
+#noteForm button,
+#editForm button {
+  background-color: #739ad4;
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+#noteForm button:hover,
+#edit button:hover {
+  background-color: #1c274c;
+}
+
+.agenda {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.agenda:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.agenda-content {
+  flex: 1;
+  padding-right: 1.5rem;
+}
+
+.agenda-header {
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.date {
+  font-size: 1rem;
+  color: #666;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: #444;
+  margin-top: 0.5rem;
+}
+
+.agenda-footer {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 1rem;
+}
+
+.agenda-buttons {
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.agenda-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.agenda-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.agenda-button svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: #2e2d2d;
+  transition: all 0.3s ease;
+}
+
+.agenda-button:hover svg {
+  padding: .1rem;
+  fill: #3667c2;
+  transform: scale(1.03);
+}
+
+/* Loader CSS */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 101;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: #739ad4;
+  transform: translate(-50%, -100%) scale(0);
+  animation: push_401 2s infinite linear;
+}
+
+.loader:after {
+  animation-delay: 1s;
+}
+
+@keyframes push_401 {
+
+  0%,
+  50% {
+    transform: translate(-50%, 0%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -100%) scale(0);
+  }
+}
+
+/* Responsivo e Menu Hamburger */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  margin: 1rem;
+  height: min-content;
+}
+
+.menu-toggle div {
+  width: 30px;
+  height: 3px;
+  background-color: #1c274c;
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+
+  .modalForm {
+    display: block;
+  }
+
+  .side-menu {
+    height: 100%;
+    transform: translateX(-100%);
+  }
+
+  .side-menu.active {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+/* Close side menu when clicked outside */

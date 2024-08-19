@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `
       <script src="./js/archives.js" defer></script>
       <script src="./js/upload.js" defer></script>
+      <script src="./js/logout.js" defer></script>
       <script defer>
         const sideMenu = document.getElementById('side-menu');
         const menuToggle = document.getElementById('menu-toggle-archives');

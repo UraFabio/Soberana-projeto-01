@@ -5,11 +5,17 @@ Bem-vindo ao **Soberana Projeto 01**! Este projeto é uma aplicação web para g
 ## Índice
 
 - [1. Clonando o Repositório](#1-clonando-o-repositório)
+
 - [2. Configurando o Banco de Dados](#2-configurando-o-banco-de-dados)
+
 - [3. Instalando Dependências](#3-instalando-dependências)
+
 - [4. Executando Migrações](#4-executando-migrações)
+
 - [5. Dados de Login Iniciais](#5-dados-de-login-iniciais)
+
 - [6. Acessando a Aplicação](#6-acessando-a-aplicação)
+
 - [7. Funcionalidades Implementadas](#7-funcionalidades-implementadas)
 
 ## 1. Clonando o Repositório
@@ -17,7 +23,9 @@ Bem-vindo ao **Soberana Projeto 01**! Este projeto é uma aplicação web para g
 Para começar, clone o repositório do projeto para sua máquina local usando o seguinte comando:
 
 ```bash
+
 git clone https://github.com/UraFabio/Soberana-projeto-01.git
+
 ```
 
 ## 2. Configurando o Banco de Dados
@@ -25,9 +33,13 @@ git clone https://github.com/UraFabio/Soberana-projeto-01.git
 Certifique-se de ter o PostgreSQL instalado em sua máquina. Crie um schema chamado project01 com as seguintes configurações:
 
 Usuário: postgres
+
 Porta: 5432
+
 Senha: senha123
+
 Banco de Dados: project01
+
 Você também pode configurar essas credenciais no arquivo database.js do projeto, se preferir.
 
 ## 3. Instalando Dependências
@@ -35,7 +47,9 @@ Você também pode configurar essas credenciais no arquivo database.js do projet
 Navegue até a pasta do projeto e execute o comando a seguir para instalar todas as dependências necessárias:
 
 ```bash
+
 npm install
+
 ```
 
 # 4. Executando Migrações
@@ -43,7 +57,9 @@ npm install
 Para inserir os dados iniciais na tabela, execute o seguinte comando:
 
 ```bash
+
 node migrations/20240817_create_initial_records.js
+
 ```
 
 ## 5. Dados de Login Iniciais
@@ -51,6 +67,7 @@ node migrations/20240817_create_initial_records.js
 Os dados de login iniciais para a aplicação são:
 
 Email: admin@admin.com
+
 Senha: admin123
 
 ## 6. Iniciando servido
@@ -58,7 +75,9 @@ Senha: admin123
 Execute o seguinte comando para dar início à aplicação
 
 ```bash
+
 npm start
+
 ```
 
 ## 7. Acessando a Aplicação
@@ -72,22 +91,45 @@ http://127.0.0.1:3000/login
 A aplicação oferece as seguintes funcionalidades:
 
 - Login de usuário
+
 - Realize login com os dados fornecidos.
+
 - Criação de novo usuário a partir de usuário logado
+
 - Usuários logados podem criar novos usuários.
+
 - Visualizar todas as agendas
+
 - Visualize uma lista de todas as agendas.
+
 - Visualizar uma agenda específica
+
 - Veja detalhes de uma agenda selecionada.
+
 - Criar uma nova agenda
+
 - Adicione uma nova agenda ao sistema.
+
 - Atualizar uma agenda existente
+
 - Modifique as informações de uma agenda.
+
 - Excluir uma agenda
+
 - Remova uma agenda do sistema.
+
 - Visualizar todos os arquivos
+
 - Veja a lista de arquivos disponíveis.
+
 - Fazer upload de um novo arquivo
+
 - Envie novos arquivos para o sistema.
+
 - Baixar arquivo
+
 - Faça o download de arquivos disponíveis.
+
+![[Pasted image 20240819102046.png]]
+
+![[Pasted image 20240819102137.png]]![[Pasted image 20240819102211.png]]![[Pasted image 20240819102230.png]]![[Pasted image 20240819102247.png]]![[Pasted image 20240819102323.png]]![[Pasted image 20240819102334.png]]![[Pasted image 20240819102351.png]]

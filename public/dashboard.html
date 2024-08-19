@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link rel="stylesheet" href="./css/dashboard.css">
+  <link rel="stylesheet" href="./css/userModal.css">
 
 </head>
 
@@ -41,7 +42,7 @@
       </li>
 
       <li>
-        <span>Minha conta</span>
+        <span id="myAccount">Minha conta</span>
       </li>
 
       <li title="sair">
@@ -133,6 +134,35 @@
       </div>
     </div>
 
+    <div id="user-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Gerenciar Usuário</h2>
+        <form id="user-form">
+
+          <div class="form-group">
+            <label for="userName">Nome:</label>
+            <input type="text" id="userName" name="userName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="userEmail">Email:</label>
+            <input type="email" id="userEmail" name="userEmail" required>
+          </div>
+
+          <div class="form-group">
+            <label for="userPassword">Senha:</label>
+            <input type="password" id="userPassword" name="userPassword" required>
+          </div>
+
+          <div class="button-group">
+            <button type="button" id="create-user" class="button">Criar Novo Usuário</button>
+            <button type="button" id="delete-user" class="button delete">Excluir Usuário Atual</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
 
     <div id="editModal" class="modal">
       <div class="modal-content">
@@ -217,6 +247,7 @@
   <script src="./js/menuToggle.js" defer></script>
   <script src="./js/deleteAgenda.js" defer></script>
   <script src="./js/editAgenda.js" defer></script>
+  <script src="./js/userModal.js" defer></script>
 </body>
 
 </html>

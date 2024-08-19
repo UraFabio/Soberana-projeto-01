@@ -9,6 +9,6 @@ router.post(
   uploadController.uploadFile
 );
 
-router.get('/', uploadController.getFiles);
+router.get('/archives', uploadController.getFiles);
 
 module.exports = router;

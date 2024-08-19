@@ -81,7 +81,9 @@ const loadContent = (data) => {
 };
 
 document.getElementById('agendas').addEventListener('click', async (e) => {
-  fetchAgenda();
+  console.log('oi');
+  window.location.reload(true);
+  window.location.reload();
 });
 
 document.getElementById('pagination').addEventListener('click', function (e) {

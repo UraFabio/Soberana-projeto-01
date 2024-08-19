@@ -7,6 +7,8 @@
   <title>Dashboard</title>
   <link rel="stylesheet" href="./css/dashboard.css">
   <link rel="stylesheet" href="./css/userModal.css">
+  <link rel="stylesheet" href="./css/archives.css">
+  <link rel="stylesheet" href="./css/menuToggle.css">
 
 </head>
 
@@ -28,7 +30,7 @@
 
 
 
-  <div class="side-menu">
+  <div id="side-menu" class="side-menu">
     <h2>MENU</h2>
     <div class="divider"></div>
     <ul>
@@ -38,7 +40,7 @@
       </li>
 
       <li>
-        <span>Arquivos</span>
+        <span id="archives">Arquivos</span>
       </li>
 
       <li>
@@ -59,15 +61,15 @@
 
   <span id="loader" class="loader"></span>
 
+  <div id="menu-toggle" class="menu-toggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
   <div id="main-content" class="main-content">
-    <div class="teste">
-      <div class="menu-toggle">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <h1 id="page-title">${title}</h1>
-    </div>
+    <h1 id="page-title">${title}</h1>
+
     <div id="pagination" class="pagination">
       <div id="previous-page" class="previous-page" title="anterior">
         <svg width="64px" height="64px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -132,16 +134,6 @@
         <button id="toggle-month">Mês</button>
         <button id="toggle-day">Dia</button>
       </div>
-
-      <form id="uploadForm" enctype="multipart/form-data">
-        <label for="fileInput">Selecione um arquivo:</label>
-        <input type="file" id="fileInput" name="file" required>
-
-        <div class="modal-buttons">
-          <button type="submit" class="upload-button">Enviar</button>
-          <button type="button" class="cancel-button">Cancelar</button>
-        </div>
-      </form>
     </div>
 
     <div id="user-modal" class="modal">
@@ -207,7 +199,7 @@
 
     <div id="myModal" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <span id="close-myModal" class="close">&times;</span>
         <h2>Nova Anotação</h2>
         <form id="noteForm">
           <label for="noteTitle">Título:</label>
@@ -250,15 +242,15 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="./js/modalAgenda.js"></script>
-  <script src="./js/agendas.js" defer></script>
-  <script src="./js/menuToggle.js" defer></script>
-  <script src="./js/deleteAgenda.js" defer></script>
-  <script src="./js/editAgenda.js" defer></script>
-  <script src="./js/userModal.js" defer></script>
-  <script src="./js/upload.js" defer></script>
+    <script src="./js/modalAgenda.js"></script>
+    <script src="./js/agendas.js" defer></script>
+    <script src="./js/deleteAgenda.js" defer></script>
+    <script src="./js/editAgenda.js" defer></script>
+    <script src="./js/userModal.js" defer></script>
+    <script src="./js/archives.js" defer></script>
+    <script src="./js/menuToggle.js" defer></script>
+  </div>
 </body>
 
 </html>

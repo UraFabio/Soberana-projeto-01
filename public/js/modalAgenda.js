@@ -1,6 +1,6 @@
 const modal = document.getElementById('myModal');
 const openModalButton = document.getElementById('add-agenda');
-const closeModalButton = document.querySelector('.close');
+const closeModalButton = document.getElementById('close-myModal');
 const saveButton = document.getElementById('saveNote');
 const cancelButton = document.getElementById('cancelNote');
 

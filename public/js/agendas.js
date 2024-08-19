@@ -128,6 +128,11 @@ function toggleSort(property) {
   sortList(state.orderBy, state.order);
 }
 
+document.getElementById('agendas').addEventListener('click', () => {
+  console.log('oi');
+  window.location.reload(true);
+});
+
 document
   .getElementById('toggle-created-at')
   .addEventListener('click', () => toggleSort('created_at'));

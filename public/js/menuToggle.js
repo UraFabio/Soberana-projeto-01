@@ -1,5 +1,5 @@
-const sideMenu = document.querySelector('.side-menu');
-const menuToggle = document.querySelector('.menu-toggle');
+const sideMenu = document.getElementById('side-menu');
+const menuToggle = document.getElementById('menu-toggle');
 
 // Alternar visibilidade do menu ao clicar no botão de alternância
 menuToggle.addEventListener('click', () => {
